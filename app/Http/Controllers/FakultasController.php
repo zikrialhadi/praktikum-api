@@ -1,33 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Fakultas;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class FakultasController extends Controller
 {
-   
-   public function index(){
-
-    $fakultas = Fakultas::all();
-
-    
-    return view('welcome', compact('fakultas'));
-   }
-
-
-
-
-
-
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $fakultas = Fakultas::all();
+        return view('fakultas.index', compact('fakultas'));
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+    return view('fakultas.create');
     }
 
     /**
