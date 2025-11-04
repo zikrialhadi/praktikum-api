@@ -1,34 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Fakultas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class ProdiController extends Controller
 {
-   
-   public function index(){
-
-    $fakultas = Fakultas::all();
-    $prodi = Prodi::all();
-    return view('welcome', compact('fakultas','prodi'));
-
-   }
-
-
-
-
-
-
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $prodi = Prodi::all();
+        return view('prodi.index', compact('prodi'));
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $prodi = Prodi::all();
+        return view('prodi.create', compact('prodi'));
     }
 
     /**
@@ -36,7 +29,16 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama_prodi' => 'required|max:50',
+            'kode_prodi' => 'required'
+        ]);
+        $prodi = Prodi::create([
+            'nama_prodi' => $request->nama_prodi,
+            'kode_prodi' => $request->kode_prodi
+        ]);
+
+        return redirect()->route('prodi.index');
     }
 
     /**
