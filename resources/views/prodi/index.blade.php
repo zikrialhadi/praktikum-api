@@ -22,15 +22,21 @@
                         <th>No</th>
                         <th>Nama Prodi</th>
                         <th>Kode Prodi</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
                 <tbody>
                     @foreach ($prodi as $item)
                         <tr>
-                            <th>{{ $loop->iteration }}</th>
-                            <th>{{ $item->nama_prodi }}</th>
-                            <th>{{ $item->kode_prodi }}</th>                       
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->nama_prodi }}</td>
+                            <td>{{ $item->kode_prodi }}</td> 
+                            <td>
+
+                                <a href="{{ route('prodi.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('prodi.delete', $item->id) }}" class="btn btn-danger">Hapus</a>
+                            </td>                      
                         </tr>
                     @endforeach                    
                    

@@ -86,6 +86,6 @@ class FakultasController extends Controller
     {
         $fakultas = Fakultas::findOrFail($id);
         $fakultas->delete();
-        return Redirect()->route('fakultas.index');php 
+        return Redirect()->route('fakultas.index');
     }
 }

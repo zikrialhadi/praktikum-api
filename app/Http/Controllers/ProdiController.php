@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Prodi;
+use App\Models\Fakultas;
 use Illuminate\Http\Request;
 
 class ProdiController extends Controller
@@ -20,8 +21,10 @@ class ProdiController extends Controller
      */
     public function create()
     {
+        $fakultas = Fakultas::all();
+
         $prodi = Prodi::all();
-        return view('prodi.create', compact('prodi'));
+        return view('prodi.create', compact('prodi', 'fakultas'));
     }
 
     /**
@@ -31,11 +34,13 @@ class ProdiController extends Controller
     {
         $validate = $request->validate([
             'nama_prodi' => 'required|max:50',
-            'kode_prodi' => 'required'
+            'kode_prodi' => 'required',
+            'fakultas_id' => 'required'
         ]);
         $prodi = Prodi::create([
             'nama_prodi' => $request->nama_prodi,
-            'kode_prodi' => $request->kode_prodi
+            'kode_prodi' => $request->kode_prodi,
+            'fakultas_id' => $request->fakultas_id
         ]);
 
         return redirect()->route('prodi.index');
@@ -54,15 +59,29 @@ class ProdiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $prodi = Prodi::findOrFail($id);
+        $fakultas = Fakultas::all();
+
+        return view('prodi.edit', compact('prodi', 'fakultas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $id)
     {
-        //
+
+       
+        $prodi = Prodi::findOrFail($id);
+         
+        $prodi->update([
+            'nama_prodi' => $request->nama_prodi,
+            'kode_prodi' => $request->kode_prodi,
+            'fakultas_id' => $request->fakultas_id,
+
+        ]);
+
+        return redirect()->route('prodi.index');
     }
 
     /**
@@ -70,6 +89,9 @@ class ProdiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $prodi = Prodi::findOrFail(id: $id);
+        $prodi->delete();
+
+        return redirect()->route('prodi.index');
     }
 }
