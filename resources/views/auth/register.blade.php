@@ -34,13 +34,13 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Buat Akun Anda</h1>
-                                @if(session('succes'))
-                                    <div class="alert.alert-succes"{{ session ('success')}}</div>
+                                <h1 class="h4 text-gray-900 mb-4">Buek Akun Lu Cuu</h1>
+                                @if(session('success'))
+                                    <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif
 
                                 @if($errors->any())
-                                    <div class="alert.alert-danger">Password dan Email Salah</div>
+                                    <div class="alert alert-danger">Password dan Email Salah</div>
                                 @endif
                             </div>
                             <form class="user" action="{{ route('post') }}" method="post">
@@ -48,17 +48,17 @@
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="name" name="name"
-                                            placeholder="Masukkan Nama Anda">
+                                            placeholder="Mosuong Namo Ocu Luu">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="email" name="email"
-                                        placeholder="Masukkan Email Anda">
+                                        placeholder="Masuong Email Ocu Lu">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user" name="password"
-                                            id="password" placeholder="Masukkan Password Anda">
+                                            id="password" placeholder="Mosuong Password Lu Cuu">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
