@@ -52,3 +52,7 @@ Route::get('/data', function () {
 
 Route::get('/register', [AuthController::class,'formRegister'])->name('register');
 Route::post('/post-register', [AuthController::class,'post'])->name('post');
+
+Route::get('/login', [AuthController::class,'formLogin'])->name('login');
+Route::post('/post-login', [AuthController::class,'login'])->name('post.login');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
