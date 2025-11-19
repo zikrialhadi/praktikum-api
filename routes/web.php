@@ -6,6 +6,7 @@ use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\AuthController;
 use App\Models\Fakultas;
 use App\Models\Prodi;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,26 +20,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard.index');
 
 //Fakultas
-Route::get('/fakultas', [FakultasController::class, 'index'])->name('fakultas.index');
-Route::get('/fakultas/create', [FakultasController::class, 'create'])->name('fakultas.create');
-Route::post('/fakultas/store', [FakultasController::class, 'store'])->name('fakultas.store');
-Route::get('/fakultas/edit/{id}', [FakultasController::class, 'edit'])->name('fakultas.edit');
-Route::post('/fakultas/update/{id}', [FakultasController::class, 'update'])->name('fakultas.update');
-Route::get('/fakultas/hapus/{id}', [FakultasController::class, 'destroy'])->name('fakultas.hapus');
+Route::get('/fakultas', [FakultasController::class, 'index'])->middleware('auth')->name('fakultas.index');
+Route::get('/fakultas/create', [FakultasController::class, 'create'])->middleware('auth')->name('fakultas.create');
+Route::post('/fakultas/store', [FakultasController::class, 'store'])->middleware('auth')->name('fakultas.store');
+Route::get('/fakultas/edit/{id}', [FakultasController::class, 'edit'])->middleware('auth')->name('fakultas.edit');
+Route::post('/fakultas/update/{id}', [FakultasController::class, 'update'])->middleware('auth')->name('fakultas.update');
+Route::get('/fakultas/hapus/{id}', [FakultasController::class, 'destroy'])->middleware('auth')->name('fakultas.hapus');
 
 
 
 
 //Prodi
-Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
-Route::get('/prodi/create', [ProdiController::class, 'create'])->name('prodi.create');
-Route::post('/prodi/store', [ProdiController::class, 'store'])->name('prodi.store');
-Route::get('/prodi/edit/{id}', [ProdiController::class, 'edit'])->name('prodi.edit');
-Route::post('/prodi/update/{id}', [ProdiController::class, 'update'])->name('prodi.update');
-Route::get('/prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('prodi.delete');
+Route::get('/prodi', [ProdiController::class, 'index'])->middleware('auth')->name('prodi.index');
+Route::get('/prodi/create', [ProdiController::class, 'create'])->middleware('auth')->name('prodi.create');
+Route::post('/prodi/store', [ProdiController::class, 'store'])->middleware('auth')->name('prodi.store');
+Route::get('/prodi/edit/{id}', [ProdiController::class, 'edit'])->middleware('auth')->name('prodi.edit');
+Route::post('/prodi/update/{id}', [ProdiController::class, 'update'])->middleware('auth')->name('prodi.update');
+Route::get('/prodi/delete/{id}', [ProdiController::class, 'destroy'])->middleware('auth')->name('prodi.delete');
 
 
 
